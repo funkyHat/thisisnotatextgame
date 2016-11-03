@@ -15,7 +15,7 @@ library_room = starting_room.north = Room("""
         will need to complete your mission.
         """)
 
-storage_room = library_room.north = Room("""
+storage_room = starting_room.west = Room("""
         This is the storage room. If you look properly you will find a key
         """)
 
