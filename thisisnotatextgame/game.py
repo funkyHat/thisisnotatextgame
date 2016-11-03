@@ -5,7 +5,10 @@ Room.complete = False
 
 current_room = starting_room = Room("""
         I don't know what you think you're doing here.
+        This is not even a game, don't ask for help
         """)
+
+starting_room.complete = True
 
 library_room = starting_room.north = Room("""
         You finally found the library! This room contains an item that you
@@ -34,6 +37,7 @@ def go(direction):
             print('You go %s.' % direction)
             look()
     else:
+        print ("You haven't completed the current one")
         pass
 
 
@@ -52,4 +56,4 @@ def win():
 
 look()
 
-start(help=False)
+start()
