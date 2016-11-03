@@ -1,6 +1,7 @@
 
 from adventurelib import Room, when, start
 
+Room.complete = False
 
 current_room = starting_room = Room("""
         I don't know what you think you're doing here.
@@ -15,17 +16,25 @@ storage_room = library_room.north = Room("""
         This is the storage room. If you look properly you will find a key
         """)
 
+scary_room = starting_room.south = Room("""
+            This is mosty scary room of all time.
+""")
+
 @when('north', direction='north')
 @when('south', direction='south')
 @when('east', direction='east')
 @when('west', direction='west')
 def go(direction):
     global current_room
-    room = current_room.exit(direction)
-    if room:
-        current_room = room
-        print('You go %s.' % direction)
-        look()
+
+    if current_room.complete:
+        room = current_room.exit(direction)
+        if room:
+            current_room = room
+            print('You go %s.' % direction)
+            look()
+    else:
+        pass
 
 
 @when('look')
