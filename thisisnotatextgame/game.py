@@ -49,10 +49,18 @@ def look():
             print('A %s is here.' % i)
 
 
+@when('scream')
+def scream():
+    if current_room is scary_room:
+        scary_room.complete = True
+    elif current_room is library_room:
+        print("you don't have to be scared, you should be reading some book now")
+    else:
+        print("hahahaha why are you scared?")
+
 @when('ignore narrator')
 def win():
     print("you win")
-
 
 look()
 
