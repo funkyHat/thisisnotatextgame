@@ -1,5 +1,5 @@
 
-from adventurelib import Room, when, start
+from adventurelib import Room, when, start, Item, Bag
 
 Room.complete = False
 
@@ -22,6 +22,11 @@ storage_room = starting_room.west = Room("""
 scary_room = starting_room.south = Room("""
             This is mosty scary room of all time.
 """)
+
+chest = Item("old, dusty chest", 'chest')
+
+scary_room.items = Bag({chest,})
+inventory = Bag()
 
 @when('north', direction='north')
 @when('south', direction='south')
@@ -48,6 +53,21 @@ def look():
         for i in current_room.items:
             print('A %s is here.' % i)
 
+@when('open ITEM')
+def open(item):
+    if item == 'chest':
+        print("it's locked")
+    else:
+        print("you can't open that")
+
+
+@when('pickup ITEM')
+def pickup(item):
+    if item == 'chest':
+        scary_room.complete = True
+        print('You found a key to unlock the room')
+    else:
+        print('You picked the wrong item')
 
 @when('scream')
 def scream():
