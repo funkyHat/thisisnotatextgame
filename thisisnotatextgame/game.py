@@ -2,12 +2,18 @@
 from adventurelib import Room, when, start
 
 
-room_1 = Room("""
+current_room = starting_room = Room("""
         I don't know what you think you're doing here.
         """)
 
-current_room = room_1
+library_room = starting_room.north = Room("""
+        You finally found the library! This room contains an item that you
+        will need to complete your mission.
+        """)
 
+storage_room = library_room.north = Room("""
+        This is the storage room. If you look properly you will find a key
+        """)
 
 @when('north', direction='north')
 @when('south', direction='south')

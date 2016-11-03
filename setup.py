@@ -9,4 +9,5 @@ setup(name='This Is Not A Game',
       packages=['thisisnotatextgame'],
 
       install_requires=['adventurelib'],
+
      )
